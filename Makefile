@@ -26,11 +26,11 @@ outfiles  := $(foreach a, $(filenames), $(a).html)
 
 all: $(infiles) $(outfiles)  ## Feeds folder-local Markdown files to Pandoc.
 
-archives.md:
+index.md:
 	# Generates an 'archives.md' based on filenames.
-	python archive.py $(posts_dir) >> $(posts_dir)/archives.md
+	python archive.py $(posts_dir) >> $(posts_dir)/index.md
 
-gh-pages: archives.md  ## Prepare an HTML directory for use with gh-pages.
+gh-pages: index.md  ## Prepare an HTML directory for use with gh-pages.
 	# Ensure Pandoc gets ALL the markdown files.
 	$(MAKE) all
 	mkdir -p html/
@@ -42,10 +42,10 @@ serve:  ## Serve up the site on localhost using a Python webserver.
 	python -m SimpleHTTPServer
 
 clean:  ## Clean the current directory of build products.
-	rm -f $(posts_dir)/*.html $(posts_dir)/archives.md
+	rm -f $(posts_dir)/*.html $(posts_dir)/index.md
 
 dist-clean:  ## Clean current directory and destroy html/ directory.
-	rm -rf $(posts_dir)/*.html html/ $(posts_dir)/archives.md
+	rm -rf $(posts_dir)/*.html html/ $(posts_dir)/index.md
 
 # Cite: https://gist.github.com/prwhite/8168133#gistcomment-1737630
 help:  ## Show this help message.

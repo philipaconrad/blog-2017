@@ -7,9 +7,13 @@ from os.path import isfile, join
 import re
 
 yaml_header = """---
-title: Archives
-author: Philip Conrad
+title: Philip Conrad
 ---
+
+Hi there! I'm Philip Conrad.
+
+This page is a mass-dump of all the stuff I've written on this blog.
+I like to write about programming and related topics.
 """
 
 # Kinda janky, but beats having to depend on somebody's YAML parser.
