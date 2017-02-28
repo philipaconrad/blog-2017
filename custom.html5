@@ -64,13 +64,16 @@ $endif$
 $body$
 <hr/>
 <footer>
-<p>Posted by $for(author)$
+$if(author)$
+<p>Posted by
+ $for(author)$
 $author$ 
 $endfor$
+$endif$
 $if(date)$
 on <time datetime="$datetime$">$date$</time>
-$endif$
 </p>
+$endif$
 </footer>
 $endif$
 </article>
