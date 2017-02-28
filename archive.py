@@ -2,7 +2,7 @@
 # Copyright (c) Philip Conrad, 2017. All rights reserved.
 
 from argparse import ArgumentParser
-from os import listdir
+from os import listdir, sep
 from os.path import isfile, join
 import re
 
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     years = {}
     for match, filename in articles:
         existing_entries = years.get(match.group('year'))
-        title = get_title(filename)
+        title = get_title(folder+sep+filename)  # Need relative path to get to file for parsing.
         out_filename = re.sub('\.md$', '\.html', filename)
         md_text = """- <time>{}<time> [{}]({})""".format(match.group("date"), title, out_filename)
         if existing_entries is not None:
