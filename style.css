@@ -101,10 +101,12 @@ p.author, p.date {
 /* Lists! */
 ul {
     list-style-type: circle;
+    margin-left: 20px;
 }
 
 li {
     margin-bottom: 5px;
+
 }
 
 /* Links! */
