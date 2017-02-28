@@ -40,7 +40,6 @@ $endfor$
 $for(include-before)$
 $include-before$
 $endfor$
-<header>
 <nav>
 <ul>
 <li><a href="/">Philip Conrad</a></li>
@@ -49,7 +48,6 @@ $endfor$
 <li><a href="https://github.com/philipaconrad">Github</a></li>
 </ul>
 </nav>
-</header>
 $if(toc)$
 <nav id="$idprefix$TOC">
 $toc$
