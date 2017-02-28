@@ -60,7 +60,7 @@ if __name__ == '__main__':
         existing_entries = years.get(match.group('year'))
         title = get_title(folder+sep+filename)  # Need relative path to get to file for parsing.
         out_filename = re.sub('\.md$', '\.html', filename)
-        md_text = """- <time>{}<time> [{}]({})""".format(match.group("date"), title, out_filename)
+        md_text = """- <time>{}</time> [{}]({})""".format(match.group("date"), title, out_filename)
         if existing_entries is not None:
             years[match.group('year')].append(md_text+"\n")
         else:
