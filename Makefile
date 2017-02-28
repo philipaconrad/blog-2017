@@ -44,8 +44,11 @@ serve:  ## Serve up the site on localhost using a Python webserver.
 clean:  ## Clean the current directory of build products.
 	rm -f $(posts_dir)/*.html $(posts_dir)/index.md
 
-dist-clean:  ## Clean current directory and destroy html/ directory.
-	rm -rf $(posts_dir)/*.html html/ $(posts_dir)/index.md
+dist-clean: clean-html  ## Clean current directory and destroy html/ directory.
+	rm -rf $(posts_dir)/*.html $(posts_dir)/index.md
+
+clean-html:
+	rm -rf html/*.html html/*.css
 
 # Cite: https://gist.github.com/prwhite/8168133#gistcomment-1737630
 help:  ## Show this help message.
