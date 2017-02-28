@@ -17,12 +17,11 @@ body {
 }
 
 article {
-    width: 800px;
     font-family: Lato Light;
     font-size: 15px;
     background-color: #ffffff;
-    padding: 5px 15px 20px 30px;
-    margin: 15px auto 15px;
+    padding: 5px 20px 20px 30px;
+    margin: 0px auto 15px;
     /*border-radius: 5px;*/
 
     -moz-box-shadow:    3px 3px 5px 3px #ccc;
@@ -162,4 +161,29 @@ nav li a:hover {
     color: #ffffff;
     text-decoration: none;
     background-color: #5f9bff;
+}
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+  article {
+    width: 100%;
+    -moz-box-shadow:    none;
+    -webkit-box-shadow: none;
+    box-shadow:         none;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  article {
+    width: 100%;
+  }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  article {
+    width: 800px;
+  }
 }
