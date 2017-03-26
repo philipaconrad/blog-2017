@@ -14,7 +14,8 @@ outfiles  := $(foreach a, $(filenames), $(a).html)
                --css reset.css \
 	       --css style.css \
 	       -B header.template \
-	       $^ >> $@
+	       $^ > $@
+	       rename 's/\d{4}-\d{2}-\d{2}_//' $@
 
 %.html: %.md
 	pandoc -f markdown+yaml_metadata_block \
@@ -22,13 +23,14 @@ outfiles  := $(foreach a, $(filenames), $(a).html)
                --css reset.css \
 	       --css style.css \
 	       -B header.template \
-	       $^ >> $@
+	       $^ > $@
+	       rename 's/\d{4}-\d{2}-\d{2}_//' $@
 
 all: $(infiles) $(outfiles)  ## Feeds folder-local Markdown files to Pandoc.
 
 index.md:
 	# Generates an 'archives.md' based on filenames.
-	python archive.py $(posts_dir) >> $(posts_dir)/index.md
+	python archive.py $(posts_dir) > $(posts_dir)/index.md
 
 gh-pages: index.md  ## Prepare an HTML directory for use with gh-pages.
 	# Ensure Pandoc gets ALL the markdown files.
@@ -37,6 +39,7 @@ gh-pages: index.md  ## Prepare an HTML directory for use with gh-pages.
 	mv $(posts_dir)/*.html html/
 	cp reset.css html/reset.css
 	cp style.css html/style.css
+	cp -R images html/images
 
 serve:  ## Serve up the site on localhost using a Python webserver.
 	python -m SimpleHTTPServer
@@ -48,7 +51,7 @@ dist-clean: clean-html  ## Clean current directory and destroy html/ directory.
 	rm -rf $(posts_dir)/*.html $(posts_dir)/index.md
 
 clean-html:
-	rm -rf html/*.html html/*.css
+	rm -rf html/*.html html/*.css html/images
 
 # Cite: https://gist.github.com/prwhite/8168133#gistcomment-1737630
 help:  ## Show this help message.
