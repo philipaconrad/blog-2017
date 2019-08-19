@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     # Group entries by year and generate the Markdown text.
     years = {}
-    for match, filename in articles:
+    for match, filename in reversed(articles):
         existing_entries = years.get(match.group('year'))
         title = get_title(folder+sep+filename)  # Need relative path to get to file for parsing.
         out_filename = match.group("title")+".html"
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     # Output YAML header (for Pandoc), then the markdown text.
     print yaml_header
     print ""
-    for year in years:
+    for year in reversed(years.keys()):
         print "## {}".format(year)
         for entry in years[year]:
             print entry
