@@ -5,6 +5,7 @@ from argparse import ArgumentParser
 from os import listdir, sep
 from os.path import isfile, join
 import re
+from datetime import datetime
 
 yaml_header = """---
 title: Philip Conrad
@@ -54,9 +55,15 @@ if __name__ == '__main__':
     pattern = re.compile("(?P<date>(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2}))_(?P<title>[-_a-zA-Z0-9]+)\.md")
     articles = [(pattern.match(f), f) for f in only_files if pattern.match(f) is not None]
 
+    def match_to_datetime(match):
+        datestr = "{}-{}-{}".format(match.group("year"),
+                                    match.group("month"),
+                                    match.group("day"))
+        return datetime.strptime(datestr, "%Y-%m-%d")
+
     # Group entries by year and generate the Markdown text.
     years = {}
-    for match, filename in reversed(articles):
+    for match, filename in reversed(sorted(articles, key=(lambda x: match_to_datetime(x[0])))):
         existing_entries = years.get(match.group('year'))
         title = get_title(folder+sep+filename)  # Need relative path to get to file for parsing.
         out_filename = match.group("title")+".html"
