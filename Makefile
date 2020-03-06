@@ -11,7 +11,7 @@ outfiles  := $(foreach a, $(filenames), $(a).html)
 %.html: %.markdown
 	pandoc -f markdown+yaml_metadata_block \
 	       --template custom.html5 \
-               --css reset.css \
+	       --css reset.css \
 	       --css style.css \
 	       -B header.template \
 	       $^ > $@
@@ -20,7 +20,7 @@ outfiles  := $(foreach a, $(filenames), $(a).html)
 %.html: %.md
 	pandoc -f markdown+yaml_metadata_block \
 	       --template custom.html5 \
-               --css reset.css \
+	       --css reset.css \
 	       --css style.css \
 	       -B header.template \
 	       $^ > $@
@@ -39,7 +39,7 @@ gh-pages: index.md  ## Prepare an HTML directory for use with gh-pages.
 	mv $(posts_dir)/*.html html/
 	cp reset.css html/reset.css
 	cp style.css html/style.css
-	cp -R images html/images
+	cp -R images html/
 
 serve:  ## Serve up the site on localhost using a Python webserver.
 	python -m SimpleHTTPServer
